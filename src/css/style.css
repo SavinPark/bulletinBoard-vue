@@ -86,6 +86,7 @@ header .header article ul li:nth-of-type(2) {
 
 .bord {
   width: 95%;
+  margin-bottom: 25px;
   box-shadow: 2px 1px 10px 1px rgba(0, 0, 0, 0.1);
 }
 .bord .bord_title {
@@ -244,11 +245,13 @@ header .header article ul li:nth-of-type(2) {
   height: 200px;
 }
 
+.multiDel_btn, 
 .form_btn {
   width: 95%;
   display: flex;
   justify-content: flex-end;
 }
+.multiDel_btn button, 
 .form_btn button {
   box-shadow: 2px 1px 10px 1px rgba(0, 0, 0, 0.1);
   border-radius: 3px;
@@ -258,6 +261,7 @@ header .header article ul li:nth-of-type(2) {
   background-color: #fff;
   border: solid 1px #aeacb6;
 }
+.multiDel_btn button:hover,
 .form_btn button:hover {
   color: #fff;
   background-color: #545357;

@@ -1,7 +1,7 @@
 <template>
   <div>
 	
-	<!-- board -->
+	<!-- Board -->
     <section class="bulletin_bord">
         <div class="container">
             <h2>게시판</h2>
@@ -22,6 +22,13 @@
                     <li><p>{{ post.date }}</p></li>
 				</ul>
             </div>
+			
+			<!-- multiDelete -->
+			<div class="multiDel_btn">
+                <button @click="multiDelete">선택삭제</button>
+            </div>
+			
+			<!-- Paging -->
             <div class="number_tab">
                 <button class="before_btn">&lt;</button>
                 <ul>
@@ -34,7 +41,7 @@
         </div>
     </section> 
 	
-	<!-- form -->
+	<!-- Form -->
 	<Form @addPost = "addPost"/>
 
   </div>
@@ -63,6 +70,9 @@ export default {
 		addPost(post) {
 			console.log(post);
 			this.board.unshift(post);
+		},
+		multiDelete() {
+			this.board = this.board.filter(post => post.selected === false);
 		}
 	}
 }

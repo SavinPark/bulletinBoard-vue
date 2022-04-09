@@ -12,9 +12,9 @@
                 </form>
             </div>
 			<div class="form_btn">
-                <button @click="delPost">삭제</button>
+                <!--button @click="delPost">삭제</button-->
                 <button @click="addPost">등록</button>
-                <button>수정</button>
+                <!--button>수정</button-->
                 <button @click="cancel">취소</button>
             </div>
         </div>
