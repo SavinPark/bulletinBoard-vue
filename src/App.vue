@@ -2,7 +2,6 @@
   <div id="app">
     <Header />
 	<Board />
-	<Form />
 	<Footer />
   </div>
 </template>
@@ -10,7 +9,6 @@
 <script>
 import Header from './components/Header.vue'
 import Board from './components/Board.vue'
-import Form from './components/Form.vue'
 import Footer from './components/Footer.vue'
 
 export default {
@@ -18,7 +16,6 @@ export default {
   components: {
     Header,
 	Board,
-	Form,
 	Footer
   }
 }
