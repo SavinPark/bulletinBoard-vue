@@ -7,10 +7,7 @@
                 <form>
                     <p><span>제 목</span><input class="form_element" type="text" name="title" placeholder="제목" v-model="addTitle"></p>
                     <p><span>작 성 자</span><input class="form_element" type="text" name="user_name" placeholder="작성자" v-model="addWriter"></p>
-					<p>
-						<span>작 성 일</span>
-						<input class="form_element" type="date" name="year" minlength="8" maxlength="8" placeholder="YYYMMDD" v-model="addDate">
-					</p>
+					<p><span>작 성 일</span><input class="form_element" type="date" name="date" v-model="addDate"></p>
                     <p class="text_area"><span>내 용</span><textarea class="form_element" name="user_content" placeholder="내용" v-model="addContents"></textarea></p>
                 </form>
             </div>
@@ -38,7 +35,7 @@ export default {
   },
   methods : {
 	addPost() {
-	  this.$emit("addPost", {selected: false, title: this.addTitle, contents:  this.addContents, writer: this.addWriter, date: this.addDate});
+	  this.$emit("addPost", {selected: false, edit:false, title: this.addTitle, contents:  this.addContents, writer: this.addWriter, date: this.addDate});
 	  this.addTitle = '';
 	  this.addContents = '';
 	  this.addWriter = '';

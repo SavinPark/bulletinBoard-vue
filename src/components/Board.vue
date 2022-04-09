@@ -12,15 +12,33 @@
                     <li>작성자</li>
                     <li>날짜</li>
                 </ul>
-                <ul v-for="(post, idx) in board" :key="idx">
+				
+                <!--ul class="post" v-for="(post, idx) in board" :key="idx">
 					  <li><p>{{ idx + 1 }}</p></li>
                       <li>
 						<input type="checkbox" name="selected" v-model="post.selected" />
-						  <a href="/Details.vue">{{ post.title }}</a>
+						<p @click="editOn(idx)">{{ post.title }}</p>
 					  </li>
                   	  <li><p>{{ post.writer }}</p></li>
                 	  <li><p>{{ post.date }}</p></li>
 				</ul>
+				<Details class="details"/-->
+				
+				<div class="post" v-for="(post, idx) in board" :key="idx">
+					<ul>
+					  <li><p>{{ idx + 1 }}</p></li>
+                      <li>
+						<input type="checkbox" name="selected" v-model="post.selected" />
+						<p class="post_title" @click="editOn(idx)">{{ post.title }}</p>
+					  </li>
+                  	  <li><p>{{ post.writer }}</p></li>
+                	  <li><p>{{ post.date }}</p></li>
+					</ul>
+					<div v-if="post.edit">
+						<Details />
+					</div>
+				</div>
+				
             </div>
 			
 			<!-- multiDelete -->
@@ -49,31 +67,38 @@
 
 <script>
 import Form from './Form.vue'
+import Details from './Details.vue'
 	
 export default {
   name: 'board',
   components: {
 	  Form,
+	  Details
   },
   data: function() {
 	  return {
 		  board : [
-			  {selected: false, title: '안녕!!', contents: '신짱구가 작성한 글', writer: '신짱구', date: '2022-03-19'},
-			  {selected: false, title: '반갑습니다! 김철수 입니다.', contents: '김철수가 작성한 글', writer: '김철수', date: '2022-03-16'},
-			  {selected: false, title: '안녕하세요~! 유리에요~', contents: '한유리가 작성한 글', writer: '한유리', date: '2022-03-16'},
-			  {selected: false, title: '반갑습니다..이훈이훈이훈', contents: '이훈이 작성한 글', writer: '이훈', date: '2022-03-16'},
-			  {selected: false, title: '안녕하세요. 반가워요 "한수지"에요.', contents: '한수지가 작성한 글', writer: '한수지', date: '2022-03-16'},
+			  {selected: false, edit:false, title: '안녕!!', contents: '신짱구가 작성한 글', writer: '신짱구', date: '2022-03-19'},
+			  {selected: false, edit:false, title: '반갑습니다! 김철수 입니다.', contents: '김철수가 작성한 글', writer: '김철수', date: '2022-03-16'},
+			  {selected: false, edit:false, title: '안녕하세요~! 유리에요~', contents: '한유리가 작성한 글', writer: '한유리', date: '2022-03-16'},
+			  {selected: false, edit:false, title: '반갑습니다..이훈이훈이훈', contents: '이훈이 작성한 글', writer: '이훈', date: '2022-03-16'},
+			  {selected: false, edit:false, title: '안녕하세요. 반가워요 "한수지"에요.', contents: '한수지가 작성한 글', writer: '한수지', date: '2022-03-16'},
 		  ],
 	  }
   },
-	methods: {
-		addPost(post) {
-			console.log(post);
-			this.board.unshift(post);
-		},
-		multiDelete() {
-			this.board = this.board.filter(post => post.selected === false);
-		}
+  methods: {
+	addPost(post) {
+	  console.log(post);
+	  this.board.unshift(post);
+	},
+	multiDelete() {
+	  this.board = this.board.filter(post => post.selected === false);
+	},
+	editOn(idx) {
+	  console.log(this.board[idx].edit);
+	  this.board[idx].edit = !this.board[idx].edit;
+	  console.log(this.board[idx].edit);
 	}
+  }
 }
 </script>

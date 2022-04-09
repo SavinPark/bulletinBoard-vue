@@ -113,16 +113,19 @@ header .header article ul li:nth-of-type(2) {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.bord ul p:hover {
-  font-weight: 500;
+.bord .post ul .post_title {
+  margin-left: 10px;
 }
-.bord ul:nth-of-type(2n+1) {
+.bord .post ul .post_title:hover {
+  font-weight: 700;
+}
+.bord .post:nth-of-type(2n+1) {
   background-color: #eee;
 }
-.bord ul:nth-of-type(2n+2) {
+.bord .post:nth-of-type(2n+2) {
   background-color: #fff;
 }
-.bord ul:nth-of-type(1) {
+.bord .bord_title:nth-of-type(1) {
   background-color: #545357;
 }
 .bord ul li {
@@ -142,6 +145,9 @@ header .header article ul li:nth-of-type(2) {
   justify-content: flex-start;
   font-weight: 340;
   color: #222;
+}
+.bord .bord_title li:nth-of-type(2) {
+  color: #fff;
 }
 .bord ul li:nth-of-type(2) p {
   text-align: start;

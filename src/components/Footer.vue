@@ -11,7 +11,7 @@
                 <li>문의사항</li>
             </ul>
             <ul class="foot_bt">
-                <li><p>상호 : 주식회사</p><p>주소 : 광주광역시 다라구 마바사로 ***** 111호 (광주투빌딩)</p></li>
+                <li><p>상호 : 주식회사</p><p>주소 : ㅁㅁㅁ시 ㅁㅁ구 ㅁㅁㅁ로 ***** 111호 (FRONTEND빌딩)</p></li>
                 <li><p>대표전화 : 1899-****</p><p>사업자등록번호 : 111-11-11111</p></li>
                 <p class="reserved">ⓒ 2022 BULLETINBORD .ALL ***** RESERVED.</p>
             </ul>
