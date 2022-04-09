@@ -5,10 +5,13 @@
             <h2>등록하기</h2>
             <div class="formbox">
                 <form>
-                    <p><span>제 목</span><input class="form_element" type="text" name="title" v-model="addTitle"></p>
-                    <p><span>작 성 자</span><input class="form_element" type="text" name="user_name" v-model="addWriter"></p>
-					<p><span>작 성 일</span><input class="form_element" type="text" name="date" v-model="addDate"></p>
-                    <p class="text_area"><span>내 용</span><textarea class="form_element" name="user_content" v-model="addContents"></textarea></p>
+                    <p><span>제 목</span><input class="form_element" type="text" name="title" placeholder="제목" v-model="addTitle"></p>
+                    <p><span>작 성 자</span><input class="form_element" type="text" name="user_name" placeholder="작성자" v-model="addWriter"></p>
+					<p>
+						<span>작 성 일</span>
+						<input class="form_element" type="date" name="year" minlength="8" maxlength="8" placeholder="YYYMMDD" v-model="addDate">
+					</p>
+                    <p class="text_area"><span>내 용</span><textarea class="form_element" name="user_content" placeholder="내용" v-model="addContents"></textarea></p>
                 </form>
             </div>
 			<div class="form_btn">
