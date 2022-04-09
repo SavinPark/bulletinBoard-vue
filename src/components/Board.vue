@@ -15,7 +15,7 @@
                 <ul v-for="(post, idx) in board" :key="idx">
 					<li><p>{{ idx + 1 }}</p></li>
                     <li>
-						<input type="checkbox" />
+						<input type="checkbox" name="selected" v-model="post.selected" />
 						<p>{{ post.title }}</p>
 					</li>
                     <li><p>{{ post.writer }}</p></li>

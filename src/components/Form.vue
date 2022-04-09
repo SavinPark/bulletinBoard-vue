@@ -12,10 +12,10 @@
                 </form>
             </div>
 			<div class="form_btn">
-                <button>삭제</button>
+                <button @click="delPost">삭제</button>
                 <button @click="addPost">등록</button>
                 <button>수정</button>
-                <button>취소</button>
+                <button @click="cancel">취소</button>
             </div>
         </div>
     </section>
@@ -36,6 +36,15 @@ export default {
   methods : {
 	addPost() {
 	  this.$emit("addPost", {selected: false, title: this.addTitle, contents:  this.addContents, writer: this.addWriter, date: this.addDate});
+	  this.addTitle = '';
+	  this.addContents = '';
+	  this.addWriter = '';
+	  this.addDate = '';
+	},
+	delPost() {
+		
+	},
+	cancel() {
 	  this.addTitle = '';
 	  this.addContents = '';
 	  this.addWriter = '';
