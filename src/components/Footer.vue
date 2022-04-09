@@ -16,10 +16,10 @@
                 <p class="reserved">ⓒ 2022 BULLETINBORD .ALL ***** RESERVED.</p>
             </ul>
             <ul class="foot_icon">
-                <li><a href="#"><img src="img/ico_footer_sns_y.png" alt="footer 유튜브 아이콘"></a></li>
-                <li><a href="#"><img src="img/ico_footer_sns_i.png" alt="footer 인스타그램 아이콘"></a></li>
-                <li><a href="#"><img src="img/ico_footer_sns_b.png" alt="footer 밴드 아이콘"></a></li>
-                <li><a href="#"><img src="img/ico_footer_sns_gift.png" alt="footer 카카오톡_선물하기 아이콘"></a></li>
+                <li><a href="#"><img src="../assets/img/ico_footer_sns_y.png" alt="footer 유튜브 아이콘"></a></li>
+                <li><a href="#"><img src="../assets/img/ico_footer_sns_i.png" alt="footer 인스타그램 아이콘"></a></li>
+                <li><a href="#"><img src="../assets/img/ico_footer_sns_b.png" alt="footer 밴드 아이콘"></a></li>
+                <li><a href="#"><img src="../assets/img/ico_footer_sns_gift.png" alt="footer 카카오톡_선물하기 아이콘"></a></li>
             </ul>
         </div>
     </footer>
