@@ -1,10 +1,10 @@
 <template>
   <div>
-	  <section class="bord_form">
-        <div class="container">
-            <h2>Details</h2>
-           <p>수정 양식</p>
-        </div>
+	<section class="board_detail">
+		<p>제 목 : {{post.title}}</p>
+    	<p>작 성 자 : {{post.writer}}</p>
+		<p>작 성 일 : {{post.date}}</p>
+   		<p>내 용 : {{post.contents}}</p>
     </section>
   </div>
 </template>
@@ -12,5 +12,8 @@
 <script>
 export default {
   name: 'details',
+  props: {
+	  post : Object,
+  },
 }
 </script>
