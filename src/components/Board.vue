@@ -1,7 +1,7 @@
 <template>
   <div>
 	
-	<!-- Board -->
+	<!-- 게시판 -->
     <section class="bulletin_bord">
         <div class="container">
             <h2>게시판</h2>
@@ -12,18 +12,6 @@
                     <li>작성자</li>
                     <li>날짜</li>
                 </ul>
-				
-                <!--ul class="post" v-for="(post, idx) in board" :key="idx">
-					  <li><p>{{ idx + 1 }}</p></li>
-                      <li>
-						<input type="checkbox" name="selected" v-model="post.selected" />
-						<p @click="editOn(idx)">{{ post.title }}</p>
-					  </li>
-                  	  <li><p>{{ post.writer }}</p></li>
-                	  <li><p>{{ post.date }}</p></li>
-				</ul>
-				<Details class="details"/-->
-				
 				<div class="post" v-for="(post, idx) in board" :key="idx">
 					<ul>
 					  <li><p>{{ idx + 1 }}</p></li>
@@ -34,25 +22,32 @@
                   	  <li><p>{{ post.writer }}</p></li>
                 	  <li><p>{{ post.date }}</p></li>
 					</ul>
+					
+					<!--상세 페이지-->
 					<div v-if="post.details">
 						<Details :post="post" />
+						<br/>
 						<div class="form_btn">
+							<button @click="editOn(idx)">수정</button>
 							<button @click="delPost(idx)">삭제</button>
-            				<button @click="editOn">수정</button>
 							<button @click="detailsOff(idx)">닫기</button>
 						</div>
-						<!--Form /-->
+					</div>
+					
+					<!-- 수정 페이지-->
+					<div v-if="post.edit">
+						<EditForm :postIdx="idx" @editPost = "editPost"/>
 					</div>
 				</div>
 				
             </div>
 			
-			<!-- multiDelete -->
+			<!-- 선택삭제 -->
 			<div class="multiDel_btn">
                 <button @click="multiDelete">선택삭제</button>
             </div>
 			
-			<!-- Paging -->
+			<!-- 페이지네이션 -->
             <div class="number_tab">
                 <button class="before_btn">&lt;</button>
                 <ul>
@@ -65,7 +60,7 @@
         </div>
     </section> 
 	
-	<!-- Form -->
+	<!-- 등록 양식 -->
 	<Form @addPost = "addPost"/>
 
   </div>
@@ -74,12 +69,14 @@
 <script>
 import Form from './Form.vue'
 import Details from './Details.vue'
+import EditForm from './EditForm.vue'
 	
 export default {
   name: 'board',
   components: {
 	  Form,
-	  Details
+	  Details,
+	  EditForm
   },
   data: function() {
 	  return {
@@ -109,11 +106,25 @@ export default {
 	  this.board[idx].details = false;
 	  console.log("상세보기 Off : details = " + this.board[idx].details);
 	},
-	editOn() {
-		console.log("수정하기");
-	},
 	delPost(idx) {
 	   this.board.splice(idx, 1);
+	},
+	editOn(idx) {
+	  this.board[idx].edit = !this.board[idx].edit;
+	},
+	editPost(postInfo) {
+		const postIdx = postInfo[0];
+		const updatePost = postInfo[1];
+		
+		let updateBoard = [];
+		for(let post of this.board) {
+			if(this.board.indexOf(post) === postIdx) {
+				updateBoard.push(updatePost);
+			} else {
+				updateBoard.push(post);
+			}
+		}
+		this.board = updateBoard;
 	}
   }
 }
