@@ -11,7 +11,7 @@
                     <li>작성자</li>
                     <li>날짜</li>
                 </ul>
-				<!-- 게시글 목록 -->
+				
 				<div class="post" v-for="(post, idx) in boardPosts" :key="idx">
 					<ul>
 					  <li><p>{{ boardSize*(boardPage-1) + (idx + 1) }}</p></li>
@@ -33,13 +33,13 @@
 							<button @click="detailsOff(boardSize*(boardPage-1) + idx)">닫기</button>
 						</div>
 					</div>
-			
+					
 					<!-- 수정 페이지-->
 					<div v-if="post.edit">
 						<EditForm :postIdx="boardSize*(boardPage-1) + idx" @editPost = "editPost"/>
 					</div>
-					
 				</div>
+				
             </div>
 			
 			<!-- 선택삭제 -->
@@ -48,11 +48,11 @@
             </div>
 			
 			<!-- 페이지네이션-->
-			<Pagination :totalPages="totalPages" :pageSize="pageSize" :boardPage="boardPage" @pageNow="pageNow" />
+			<Pagination :totalPages="totalPages" :size="pageSize" :boardPage="boardPage" @pageNow="pageNow" />
 			
         </div>
     </section> 
-	  
+	
 	<!-- 등록 양식 -->
 	<Form @addPost = "addPost"/>
 
@@ -64,7 +64,6 @@ import Form from './Form.vue'
 import Details from './Details.vue'
 import EditForm from './EditForm.vue'
 import Pagination from './Pagination.vue'
-	
 	
 export default {
   name: 'board',
@@ -141,29 +140,29 @@ export default {
 	   }
   },
   methods: {
-	  addPost(post) {
+	addPost(post) {
 	    this.board.unshift(post);
-	  },
-	  multiDelete() {
+	},
+	multiDelete() {
 		this.board = this.board.filter(post => post.selected === false);
 		if (this.boardPosts.length === 0) {
 			this.boardPage = this.boardPage - 1;
 		}
-	  },
-	  detailsOn(idx) {
+	},
+	detailsOn(idx) {
 	    this.board[idx].details = true;
-	  },
-	  detailsOff(idx) {
+	},
+	detailsOff(idx) {
 	    this.board[idx].details = false;
 	    this.board[idx].edit = false;
-	  },
-	  delPost(idx) {
+	},
+	delPost(idx) {
 	    this.board.splice(idx, 1);
-	  },
-	  editOn(idx) {
+	},
+	editOn(idx) {
 	    this.board[idx].edit = !this.board[idx].edit;
-	  },
-	  editPost(postInfo) {
+	},
+	editPost(postInfo) {
 		const postIdx = postInfo[0];
 		const updatePost = postInfo[1];
 		
@@ -177,6 +176,17 @@ export default {
 		}
 		this.board = updateBoard;
 	},
+	/*
+	onPageChange(val) {
+        if (val < 0) {
+            alert('첫 페이지입니다.');
+            return;
+        }
+        if (val >= this.totalPages) {
+            alert('마지막 페이지입니다.');
+            return;
+        }
+    },*/
 	pageNow(page) {
 		this.boardPage = page;
 	}

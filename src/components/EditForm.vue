@@ -2,7 +2,6 @@
   <div>
 	  <section class="bord_form">
         <div class="container">
-			<h1>게시글 IDX : {{ postIdx }}</h1>
 			<h1>[ 수정 내용 ]</h1>
 			<div class="board_detail">
 				<p>제 목 : {{ editTitle }}</p>
@@ -50,7 +49,10 @@ export default {
 	  	this.editDate = '';
 	  },
 	  cancel() {
-		  
+		this.editTitle = '';
+	  	this.editContents = '';
+	  	this.editWriter = '';
+	  	this.editDate = '';
 	  }
   },
 }
