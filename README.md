@@ -1,7 +1,7 @@
 # Bulletin Board 
 
 * 프레임워크 : Vue.js
-* 기간 : 2022.04.09 ~ 2022.04.14
+* 작업 기간 : 2022.04.09 ~ 2022.04.14
 
 아래의 이미지는 Bulletin Board 의 최종 완성 모습입니다.
 
@@ -21,6 +21,7 @@
 
 ![Uploading {image file name}](https://velog.velcdn.com/images/savin/post/16b28e91-25b5-43d3-b687-ea41d9fbb770/image.png)
 
+## 컴포넌트 상세 설명
 ### App.vue
 * Header, Board, Footer 컴포넌트를 렌더링한다.
 
@@ -60,7 +61,12 @@
     ( details 속성값이 false로 변경되면 게시글 상세페이지가 사라지고, edit 속성값이 false로 변경되면 수정페이지가 사라진다. )
   * **editOn(idx)** : idx를 전달받아 board 리스트에서 해당 idx를 가진 객체의 edit 속성값을 true로 변경한다.<br/>
     ( edit 속성값이 true로 변경되면 게시글 수정양식 페이지가 나타난다. )
-  * **editPost(postInfo)** : EditForm 컴포넌트에서 전달받은 게시글 수정 정보를 해당
+  * **editPost(postInfo)** : 수정 게시글 데이터를 전달받아 수정 작업을 수행하는 함수
+    * EditForm 컴포넌트에서 전달받은 수정할 게시글 인덱스와 수정 게시글 객체를 전달받는다.
+    * board에 재할당할 빈 리스트를 생성한다.
+    * board 리스트 안을 돌면서 해당 요소의 인덱스가 EditForm 컴포넌트에서 전달받은 인덱스와 일치하지 않으면 리턴할 board에 재할당할 리스트에 넣고,
+    * 일치하면 EditForm 컴포넌트에서 전달받은 수정 게시글 객체를 넣는다.
+    * 위의 작업을 완료하면 board에 새롭게 채운 리스트를 재할당한다.
   * **pageNow(page)** : Pagination 컴포넌트에서 전달받은 이동 완료 후의 페이지 데이터를 받아 this.boardPage에 할당하는 함수
 
 #### Form.vue
@@ -106,3 +112,39 @@
     * 현재 페이지 > this.totalPages (현재 페이지 번호가 마지막 페이지 번호보다 크면) "마지막 페이지입니다."라는 alert을 띄운다.
     * 위의 두 가지 경우에 해당되지 않으면, this.pageNow 변수에 현재 페이지 번호(val)를 업데이트한다.
     * 상위 컴포넌트(Board.vue)에 현재 페이지 변수 (this.pageNow)값을 전달한다. ( $emit 사용 )
+
+
+## 본 프로젝트에서 어려웠던 점 / 중요한 내용
+### 1. 페이징 처리
+### 2. Vue.js에서의 데이터 변동 감지
+* 참고 블로그
+  * https://kr.vuejs.org/v2/guide/reactivity.html#%EB%B3%80%EA%B2%BD-%EA%B0%90%EC%A7%80-%EA%B2%BD%EA%B3%A0
+  * https://minho-jang.github.io/development/5/
+* 문제
+  * 게시글 수정 기능 구현 부분에서 수정된 게시글의 데이터만 업데이트하는 방식으로 구현하였더니 Vue.js에서 변경사항을 감지하지 못하였다.
+  ```javascript
+  editPost(postInfo) {
+    const postIdx = postInfo[0];
+    const updatePost = postInfo[1];
+    this.board[postIdx] = updatePost;
+  }
+  ```
+* 해결 
+  * **editPost(postInfo)**에서 board 리스트를 재할당하였다.
+  
+  ```javascript
+  editPost(postInfo) {
+		const postIdx = postInfo[0];
+		const updatePost = postInfo[1];
+		
+		let updateBoard = [];
+		for(let post of this.board) {
+			if(this.board.indexOf(post) === postIdx) {
+				updateBoard.push(updatePost);
+			} else {
+				updateBoard.push(post);
+			}
+		}
+  this.board = updateBoard;
+	},
+  ```
