@@ -130,7 +130,7 @@
   }
   ```
 * 해결 
-  * **editPost(postInfo)**에서 board 리스트를 재할당하였다.
+  * **editPost(postInfo)** 에서 board 리스트를 재할당하였다.
   
   ```javascript
   editPost(postInfo) {
@@ -145,6 +145,6 @@
 				updateBoard.push(post);
 			}
 		}
-  this.board = updateBoard;
+    this.board = updateBoard;
 	},
   ```
